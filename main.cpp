@@ -1,4 +1,3 @@
-#include <iostream>
 #include "disassembler.h"
 
 int main()
