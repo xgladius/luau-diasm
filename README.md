@@ -23,21 +23,21 @@ numparams: 0
 nups: 0
 isvararg: 1
 
-[001] R_OP_CLEARSTACK      00 00 00
-[002] R_OP_LOADNUMBER      02 01 00 ; 1
-[003] R_OP_LOADNUMBER      00 10 00 ; 10
-[004] R_OP_LOADNUMBER      01 01 00 ; 1
-[005] R_OP_FORPREP         00 09 00 ; to 14
-[006] R_OP_OGETENV         03 01 00 ; print
-[007] PSEUDO               00 00 64
-[008] R_OP_MOVE            04 02 00
-[009] R_OP_CALL            03 02 01
-[010] R_OP_OGETENV         03 03 00 ; print
-[011] PSEUDO               00 32 64
-[012] R_OP_MOVE            04 02 00
-[013] R_OP_CALL            03 02 01
-[014] R_OP_FORLOOP         00 -9 -1 ; to 5
-[015] R_OP_RETURN          00 01 00
+[001] CLEARSTACK      00 00 00
+[002] LOADNUMBER      02 01 00 ; 1
+[003] LOADNUMBER      00 10 00 ; 10
+[004] LOADNUMBER      01 01 00 ; 1
+[005] FORPREP         00 09 00 ; to 14
+[006] OGETENV         03 01 00 ; print
+[007] PSEUDO          00 00 64
+[008] MOVE            04 02 00
+[009] CALL            03 02 01
+[010] OGETENV         03 03 00 ; print
+[011] PSEUDO          00 32 64
+[012] MOVE            04 02 00
+[013] CALL            03 02 01
+[014] FORLOOP         00 -9 -1 ; to 5
+[015] RETURN          00 01 00
 
 sizek: 4
 sizep: 0
