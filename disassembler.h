@@ -4,7 +4,6 @@
 
 #include <string>
 #include <vector>
-#include <cmath>
 #include <unordered_map>
 #include <sstream>
 
@@ -86,6 +85,7 @@ struct k_type
 class disassembler
 {
 public:
+    disassembler();
     void disassemble(std::string& bytecode);
 private:
     int get_and_pop();
