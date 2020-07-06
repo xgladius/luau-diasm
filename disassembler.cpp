@@ -9,61 +9,61 @@
 std::string luau_opnames[0xFF + 1]
 {
     [0] = "PSEUDO",
-    init(R_OP_MUL),
-    init(R_OP_MULK),
-    init(R_OP_TFORPREP),
-    init(R_OP_LEN),
-    init(R_OP_SUB),
-    init(R_OP_SUBK),
-    init(R_OP_TESTN),
-    init(R_OP_TESTM),
-    init(R_OP_SETTABLEK),
-    init(R_OP_GETENV),
-    init(R_OP_OGETENV),
-    init(R_OP_SETENV),
-    init(R_OP_UNM),
-    init(R_OP_ADD),
-    init(R_OP_ADDK),
-    init(R_OP_GETTABLEK),
-    init(R_OP_MOVE),
-    init(R_OP_NOT),
-    init(R_OP_NLT),
-    init(R_OP_JMP),
-    init(R_OP_JMPBACK),
-    init(R_OP_SETTABLE),
-    init(R_OP_LONGJMP),
-    init(R_OP_LOADK),
-    init(R_OP_CONCAT),
-    init(R_OP_NLE),
-    init(R_OP_RETURN),
-    init(R_OP_GETTABLE),
-    init(R_OP_FORLOOP),
-    init(R_OP_LOADNUMBER),
-    init(R_OP_NEQ),
-    init(R_OP_CALL),
-    init(R_OP_CLEARSTACK),
-    init(R_OP_CLEARSTACK_NVA),
-    init(R_OP_FORPREP),
-    init(R_OP_LOADBOOL),
-    init(R_OP_POW),
-    init(R_OP_POWK),
-    init(R_OP_LT),
-    init(R_OP_SELF),
-    init(R_OP_CLOSE),
-    init(R_OP_SETLIST),
-    init(R_OP_LOADNIL),
-    init(R_OP_MOD),
-    init(R_OP_MODK),
-    init(R_OP_LE),
-    init(R_OP_SETUPVAL),
-    init(R_OP_CLOSURE),
-    init(R_OP_VARARG),
-    init(R_OP_DIV),
-    init(R_OP_DIVK),
-    init(R_OP_EQ),
-    init(R_OP_TFORLOOP),
-    init(R_OP_GETUPVAL),
-    init(R_OP_NEWTABLE)
+    init(MUL),
+    init(MULK),
+    init(TFORPREP),
+    init(LEN),
+    init(SUB),
+    init(SUBK),
+    init(TESTN),
+    init(TESTM),
+    init(SETTABLEK),
+    init(GETENV),
+    init(OGETENV),
+    init(SETENV),
+    init(UNM),
+    init(ADD),
+    init(ADDK),
+    init(GETTABLEK),
+    init(MOVE),
+    init(NOT),
+    init(NLT),
+    init(JMP),
+    init(JMPBACK),
+    init(SETTABLE),
+    init(LONGJMP),
+    init(LOADK),
+    init(CONCAT),
+    init(NLE),
+    init(RETURN),
+    init(GETTABLE),
+    init(FORLOOP),
+    init(LOADNUMBER),
+    init(NEQ),
+    init(CALL),
+    init(CLEARSTACK),
+    init(CLEARSTACK_NVA),
+    init(FORPREP),
+    init(LOADBOOL),
+    init(POW),
+    init(POWK),
+    init(LT),
+    init(SELF),
+    init(CLOSE),
+    init(SETLIST),
+    init(LOADNIL),
+    init(MOD),
+    init(MODK),
+    init(LE),
+    init(SETUPVAL),
+    init(CLOSURE),
+    init(VARARG),
+    init(DIV),
+    init(DIVK),
+    init(EQ),
+    init(TFORLOOP),
+    init(GETUPVAL),
+    init(NEWTABLE)
 };
 
 template <typename Out>
@@ -195,25 +195,25 @@ void disassembler::disassemble(std::string& bytecode)
             printf("[%03d] %s %*s %02d %02d %02d", i/4 + 1, name.c_str(), longest - name.size(), "", (char)a, (char)b, (char)c);
             switch(op)
             {
-                case R_OP_LOADNUMBER:
+                case LOADNUMBER:
                     printf(" ; %d", (char)b);
                     break;
-                case R_OP_LOADK:
+                case LOADK:
                     if (k_table[b].type == 3)
                         printf(" ; %s", str_table.at(k_table[a].value.s_idx).c_str());
                     else if (k_table[b].type == 2)
                         printf(" ; %f", k_table[b].value.dval);
                     break;
-                case R_OP_FORLOOP:
-                case R_OP_FORPREP:
-                case R_OP_JMP:
+                case FORLOOP:
+                case FORPREP:
+                case JMP:
                     printf(" ; to %d", i/4 + 1 + (char)b);
                     break;
-                case R_OP_GETENV:
-                case R_OP_SETENV:
+                case GETENV:
+                case SETENV:
                     printf(" ; %s", str_table.at(k_table[a].value.s_idx).c_str());
                     break;
-                case R_OP_OGETENV:
+                case OGETENV:
                     printf(" ; %s", str_table.at(k_table[b].value.s_idx).c_str());
                     break;
                 default:
