@@ -20,8 +20,8 @@ void init_members()
     init(LEN);
     init(SUB);
     init(SUBK);
-    init(TESTN);
-    init(TESTM);
+    init(TESTAND);
+    init(TESTOR);
     init(SETTABLEK);
     init(GETENV);
     init(OGETENV);
@@ -206,6 +206,7 @@ void disassembler::disassemble(std::string& bytecode)
             if (name.empty())
                 name = "PSEUDO";
             printf("[%03d] %s %*s %02d %02d %02d", i / 4 + 1, name.c_str(), longest - name.size(), "", (char)a, (char)b, (char)c);
+        	
             switch (op)
             {
             case LOADNUMBER:
@@ -224,7 +225,7 @@ void disassembler::disassemble(std::string& bytecode)
                 break;
             case GETENV:
             case SETENV:
-                printf(" ; %s", str_table.at(k_table[a].value.s_idx).c_str());
+                printf(" ; %s", str_table.at(k_table[std::stoi(toks[0], nullptr, 16) - 1].value.s_idx).c_str());
                 break;
             case OGETENV:
                 printf(" ; %s", str_table.at(k_table[b].value.s_idx).c_str());
@@ -289,10 +290,7 @@ void disassembler::disassemble(std::string& bytecode)
                 get_and_pop();
             }
         }
-
-        printf("should be 0: %d\n", get_and_pop());
-        printf("head proto index: %d\n", get_and_pop());
-
-        assert(toks.empty());
     }
+    printf("should be 0: %d\n", get_and_pop());
+    printf("head proto index: %d\n", get_and_pop());
 }
